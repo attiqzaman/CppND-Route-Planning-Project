@@ -23,6 +23,16 @@ class RouteModel : public Model {
             return std::sqrt(std::pow((x - other.x), 2) + std::pow((y - other.y), 2));
         }
 
+        // Overload < operator so we can use std::sort.
+        // bool operator <(const Node & otherNode) const
+        // {
+        //   return (h_value + g_value) < (otherNode.h_value + otherNode.g_value);
+        // }
+        
+        bool operator == (const Node& other) {
+          return x == other.x && y == other.y;
+        }
+
         Node(){}
         Node(int idx, RouteModel * search_model, Model::Node node) : Model::Node(node), parent_model(search_model), index(idx) {}
 
